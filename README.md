@@ -1,3 +1,11 @@
+## Final project
+
+MyCloset is a mobile app to help you organize what you are going to wear on what day. The app helps you match items based on what you have worn in the past and will provide you with daily suggestions based on the weather.
+
+Note: downgrade your npm@4 and downgrade node, it will not start with the latest packages.
+
+## Create React Native App
+
 This project was bootstrapped with [Create React Native App](https://github.com/react-community/create-react-native-app).
 
 Below you'll find information about performing common tasks. The most recent version of this guide is available [here](https://github.com/react-community/create-react-native-app/blob/master/react-native-scripts/template/README.md).
