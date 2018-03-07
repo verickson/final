@@ -4,6 +4,13 @@ MyCloset is a mobile app to help you organize what you are going to wear on what
 
 Note: downgrade your npm@4 and downgrade node, it will not start with the latest packages.
 
+[Workaround for src](#Workaround-for-src)
+
+## Workaround for src
+
+For changing the contents in the App.js without displaying anything inside it I used [This Workaround](https://github.com/react-community/create-react-native-app/issues/152).
+
+
 ## Create React Native App
 
 This project was bootstrapped with [Create React Native App](https://github.com/react-community/create-react-native-app).
