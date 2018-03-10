@@ -1,27 +1,16 @@
-import Home from './src/components/Home';
+import React from 'react';
+// import { StackNavigator, SwitchNavigator, addNavigationHelpers } from 'react-navigation';
+// import { createStore, applyMiddleware, combineReducers} from 'redux';
+// import { createReduxBoundAddListener, createReactNavigationReduxMiddleware } from 'react-navigation-redux-helpers';
 
-export default Home;
+ // import MainNavigator from './src/Navigation/MainNav';
 
-// import React from 'react';
-// import { StyleSheet, Text, View } from 'react-native';
-//
-// export default class App extends React.Component {
-//   render() {
-//     return (
-//       <View style={styles.container}>
-//         <Text>Open up App.js to start working on your app!</Text>
-//         <Text>Changes you make will automatically reload.</Text>
-//         <Text>Shake your phone to open the developer menu.</Text>
-//       </View>
-//     );
-//   }
-// }
-//
-// const styles = StyleSheet.create({
-//   container: {
-//     flex: 1,
-//     backgroundColor: '#fff',
-//     alignItems: 'center',
-//     justifyContent: 'center',
-//   },
-// });
+ import {Tabs} from './src/Navigation/router';
+
+export default class App extends React.Component {
+  render() {
+    return (
+       <Tabs />
+    );
+  }
+}
