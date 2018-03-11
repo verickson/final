@@ -19,7 +19,7 @@ export default class ImageItem extends React.Component {
     var marker = selectedMarker ? selectedMarker :
       <Image
         style={[styles.marker, { width: 25, height: 25 }]}
-        source={require('../images/circle-check.png')}
+        source={require('../images/circle-check.svg')}
       />;
     var image = item.node.image;
     return (

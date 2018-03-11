@@ -13,7 +13,13 @@ const styles = StyleSheet.create({
   },
   texttop:{
     paddingTop:20,
-  }
+  },
+  marker: {
+    position: 'absolute',
+    top: 5,
+    right: 5,
+    backgroundColor: 'transparent',
+  },
 });
 
 export default styles;

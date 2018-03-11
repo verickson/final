@@ -1,5 +1,6 @@
 import React from 'react';
 import { TabNavigator, StackNavigator  } from 'react-navigation';
+import { Button } from 'react-native';
 import FontAwesome from 'react-native-vector-icons/FontAwesome';
 
 import HomeScreen from '../components/Home';
@@ -12,7 +13,9 @@ export const PhotoStack = StackNavigator({
   Photo:{
     screen: PhotoScreen,
     navigationOptions: (props) => ({
-      title: "Photo",
+      title: "Images Selected",
+      headerRight: <Button title="Next" onPress={ () => { props.navigation.navigate('Add') }} />,
+      headerLeft: <Button title="Cancel" onPress={ () => { props.navigation.navigate('Home') }} />,
     }),
   },
   Add: {
@@ -20,6 +23,28 @@ export const PhotoStack = StackNavigator({
     navigationOptions: (props) => ({
       title: "Add",
     })
+  }
+});
+
+export const PhotoTab = TabNavigator({
+  Library:{
+    screen: PhotoStack,
+    navigationOptions: (props) => ({
+      title: "Photos",
+    })
+  }
+  // ,
+  // Photo:{
+  //
+  // }
+},
+{
+  mode: 'modal',
+  headerMode: 'none',
+  tabBarPosition: 'bottom',
+  tabBarOptions: {
+    activeTintColor: '#000000',
+    inactiveTintColor: '#9B9B9B',
   }
 });
 
@@ -48,7 +73,7 @@ export const Tabs = TabNavigator({
       }
   },
   Photo: {
-      screen: PhotoScreen,
+      screen: PhotoTab,
       navigationOptions: {
         tabBarIcon: ({ tintColor }) => <FontAwesome name={"camera"} size={25} color={tintColor} />
       }
@@ -57,7 +82,7 @@ export const Tabs = TabNavigator({
 {
   tabBarPosition: 'bottom',
   tabBarOptions: {
-    activeTintColor: 'blue',
+    activeTintColor: '#5314E9',
     inactiveTintColor: '#9B9B9B',
     showLabel: false
   }
