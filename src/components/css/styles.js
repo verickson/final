@@ -2,18 +2,13 @@ import { StyleSheet } from 'react-native';
 
 const styles = StyleSheet.create({
   container:{
-    backgroundColor: '#ff00ff',
     flex: 1,
-    alignItems: 'center',
-    justifyContent: 'center',
+    backgroundColor: '#ff00ff',
   },
-  image:{
-    height: 50,
-    width: 50,
-  },
-  texttop:{
-    paddingTop:20,
-  },
+  // image:{
+  //   height: 50,
+  //   width: 50,
+  // },
   marker: {
     position: 'absolute',
     top: 5,

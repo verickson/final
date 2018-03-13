@@ -14,15 +14,24 @@ export const PhotoStack = StackNavigator({
     screen: PhotoScreen,
     navigationOptions: (props) => ({
       title: "Images Selected",
-      headerRight: <Button title="Next" onPress={ () => { props.navigation.navigate('Add') }} />,
-      headerLeft: <Button title="Cancel" onPress={ () => { props.navigation.navigate('Home') }} />,
+      headerRight: <Button color="#fff" title="Next" onPress={ () => { props.navigation.navigate('Add') }} />,
+      headerLeft: <Button color="#fff" title="Cancel" onPress={ () => { props.navigation.navigate('Home') }} />,
     }),
   },
   Add: {
     screen: AddScreen,
     navigationOptions: (props) => ({
       title: "Add",
+      headerRight: <Button color="#fff" title="Save" onPress={ () => { props.navigation.navigate('Home') }} />,
     })
+  }
+},
+{
+  navigationOptions:{
+    headerStyle: {
+      backgroundColor: '#5314E9',
+    },
+    headerTintColor: '#fff',
   }
 });
 
@@ -43,8 +52,13 @@ export const PhotoTab = TabNavigator({
   headerMode: 'none',
   tabBarPosition: 'bottom',
   tabBarOptions: {
+    showIcon: false,
     activeTintColor: '#000000',
     inactiveTintColor: '#9B9B9B',
+    labelStyle: {
+      fontSize: 16,
+      fontWeight: '600'
+    }
   }
 });
 
@@ -61,6 +75,14 @@ export const FeedStack = StackNavigator({
     navigationOptions: (props) => ({
       title: "Detail",
     }),
+  }
+},
+{
+  navigationOptions:{
+    headerStyle: {
+      backgroundColor: '#5314E9',
+    },
+    headerTintColor: '#fff',
   }
 });
 
