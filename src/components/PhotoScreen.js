@@ -27,8 +27,8 @@ export default class RollScreen extends React.Component{
 
   render(){
     console.log(this.state.selected)
-        const { navigate } = this.props.navigation;
-        (console.log(navigate))
+    const { navigate } = this.props.navigation;
+    (console.log(navigate))
     var marker = <Image
       style={[styles.marker, { width: 25, height: 25 }]}
       source={require('../images/circle-check.png')}

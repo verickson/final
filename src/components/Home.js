@@ -37,9 +37,9 @@ export default class Home extends React.Component{
       });
     })
   }
-  handlePress =(props)=>{
-    this.props.navigation.navigate("Details", {image: this.state.posts})
-  }
+  // handlePress =(props)=>{
+  //   this.props.navigation.navigate("Details", {image: this.props.navigation.state.params.image})
+  // }
   render(){
      // console.log(this.props)
     return(
@@ -47,27 +47,20 @@ export default class Home extends React.Component{
           <Content>
             {this.state.posts.map((post) => {
               if (post.image === '') {
-
               }
               else{
                 return (
-                  <Card key={post.image} style={{flexWrap: 'nowrap'}} onPress={this.handlePress}>
-                    <CardItem cardBody>
-                      <Image source={{uri: post.image}} style={{flexDirection:'row', alignSelf: 'stretch', resizeMode: 'cover', height: 200, width: null, flex: 1}}/>
-                    </CardItem>
-                  </Card>
+                  <TouchableOpacity
+                  onPress={() =>this.props.navigation.navigate('Details', {image: post.image})} key={post.image}>
+                    <Card style={{flexWrap: 'nowrap'}}>
+                      <CardItem cardBody>
+                        <Image source={{uri: post.image}} style={{flexDirection:'row', alignSelf: 'stretch', resizeMode: 'cover', height: 200, width: null, flex: 1}}/>
+                      </CardItem>
+                    </Card>
+                  </TouchableOpacity>
                 )
               }
             })}
-            <Card>
-              <CardItem>
-                <Body>
-                  <TouchableOpacity onPress={this.handlePress}>
-                    <Text>Go to details</Text>
-                  </TouchableOpacity>
-                </Body>
-              </CardItem>
-            </Card>
           </Content>
       </View>
     );
@@ -77,5 +70,15 @@ export default class Home extends React.Component{
 // <Card>
 //   <CardItem cardBody>
 //     {this.image ? <Image style={{height:200,width:null,flex:1}} source={this.image}/> : null}
+//   </CardItem>
+// </Card>
+
+// <Card>
+//   <CardItem>
+//     <Body>
+//       <TouchableOpacity onPress={this.handlePress}>
+//         <Text>Go to details</Text>
+//       </TouchableOpacity>
+//     </Body>
 //   </CardItem>
 // </Card>
