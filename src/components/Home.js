@@ -13,9 +13,7 @@ export default class Home extends React.Component{
     super(props);
     firebase.initializeApp(APIKeys.firebaseconfig);
     this.state ={
-      posts: [],
-      image: '',
-      description: ''
+      posts: []
     }
   }
   componentDidMount = () =>{
@@ -25,12 +23,14 @@ export default class Home extends React.Component{
       let posts = snapshot.val();
       let newState = [];
        // console.log(posts);
-      for (let post in posts) {
+      //for (let post in posts) {
+       Object.keys(posts).forEach(function(postName){
+        // console.log(postName)
         newState.push({
-          image: posts[post].image,
-          description: posts[post].description
+          image: posts[postName].image,
+          key: postName
         });
-      }
+      });
       // console.log(newState);
       this.setState({
         posts: newState
@@ -42,6 +42,7 @@ export default class Home extends React.Component{
   // }
   render(){
      // console.log(this.props)
+     // console.log(this.state.posts)
     return(
       <View style={styles.container}>
           <Content>
@@ -51,7 +52,7 @@ export default class Home extends React.Component{
               else{
                 return (
                   <TouchableOpacity
-                  onPress={() =>this.props.navigation.navigate('Details', {image: post.image})} key={post.image}>
+                  onPress={() =>this.props.navigation.navigate('Details', {key: post.key})} key={post.key}>
                     <Card style={{flexWrap: 'nowrap'}}>
                       <CardItem cardBody>
                         <Image source={{uri: post.image}} style={{flexDirection:'row', alignSelf: 'stretch', resizeMode: 'cover', height: 200, width: null, flex: 1}}/>
