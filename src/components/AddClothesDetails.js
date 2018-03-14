@@ -1,14 +1,9 @@
 import React from 'react';
-import { StyleSheet, Text, View, TextInput, Picker, Image } from 'react-native';
+import { StyleSheet, Text, View, TextInput, Picker, Image, Button } from 'react-native';
 import { Container, Content, Card, CardItem, Form, Item, Input, Label, List, ListItem, InputGroup } from 'native-base';
 import styles from './css/styles';
 
-// import firebase from 'firebase';
-// import RNFetchBlob from 'react-native-fetch-blob';
-
-// const Blog = RNFetchBlob.polyfill.Blob;
-// window.XMLHttpRequest = RNFetchBlob.polyfill.XMLHttpRequest;
-// window.Blob = Blob;
+import firebase from 'firebase';
 
 export default class AddClothesDetails extends React.Component{
   constructor(props) {
@@ -27,28 +22,46 @@ export default class AddClothesDetails extends React.Component{
       season : '',
       style: '',
       subStyle: '',
-      friend: ''
+      friend: '',
+      image: ''
     };
   }
-  inlinePresent() {
-   var inlineComponentPresent = false;
-   if (this.inputPresent()) {
-       if (this.props.children.props.children.props && this.props.children.props.children.props.inlineLabel) {
-           inlineComponentPresent = true;
-       }
-       else
-           inlineComponentPresent = false;
-   }
-   return inlineComponentPresent;
- }
+  saveData = () => {
+    let dbRef = firebase.database().ref('/posts/post' + Math.floor(Math.random() * Math.floor(999999)));
+    // dbRef.on('value', (snapshot) => {
+    //   console.log(snapshot.val());
+    // }
+    dbRef.set(
+      {
+        description: this.state.description,
+        store: this.state.store,
+        size: this.state.size,
+        designer: this.state.designer,
+        price: this.state.price,
+        color: this.state.color,
+        name: this.state.name,
+        material: this.state.material,
+        country: this.state.country,
+        laundry: this.state.laundry,
+        season : this.state.season,
+        style: this.state.style,
+        subStyle: this.state.subStyle,
+        friend: this.state.friend,
+        image: this.props.navigation.state.params.image[0]['uri']
+      }
+    )
+    this.props.navigation.navigate('Home');
+  }
   render(){
+    // console.log(this.props)
+    // console.log(this.props.navigation.state.params.image[0]['uri'])
     return(
       <View style={styles.container}>
         <Container>
           <Content>
             <List>
               <ListItem>
-                <Image source={{uri: 'Image URL'}} style={{height: 200, width: null, flex: 1}}/>
+                <Image source={{uri: this.props.navigation.state.params.image[0]['uri']}} style={{height: 200, width: null, flex: 1}}/>
               </ListItem>
               <ListItem>
                 <InputGroup>
@@ -149,6 +162,8 @@ export default class AddClothesDetails extends React.Component{
                   />
                 </InputGroup>
               </ListItem>
+
+              <Button title="add" onPress={this.saveData} />
             </List>
           </Content>
         </Container>

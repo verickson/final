@@ -26,15 +26,24 @@ export default class RollScreen extends React.Component{
   }
 
   render(){
+    console.log(this.state.selected)
+        const { navigate } = this.props.navigation;
+        (console.log(navigate))
     var marker = <Image
       style={[styles.marker, { width: 25, height: 25 }]}
       source={require('../images/circle-check.png')}
     />;
     return(
       <View style={styles.container}>
-        <Text>{this.state.num} Images Selected</Text>
+        <Button
+          title="go to add"
+          onPress={() =>
+            this.props.navigation.navigate('Add', {image: this.state.selected})
+          }
+        />
         <CameraRollPicker callback={this.myImages.bind(this)} selectedMarker={marker} />
       </View>
     );
   }
 };
+// <Text>{this.state.num} Images Selected</Text>

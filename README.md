@@ -2,6 +2,8 @@
 
 MyCloset is a mobile app to help you organize what you are going to wear on what day. The app helps you match items based on what you have worn in the past and will provide you with daily suggestions based on the weather.
 
+Database is using firebase: https://console.firebase.google.com/u/0/project/mycloset-001/database/mycloset-001/data
+
 Note: downgrade your npm@4 and downgrade node, it will not start with the latest packages.
 
 [Workaround for src](#Workaround-for-src)

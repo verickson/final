@@ -34,6 +34,7 @@
     "react-native-chooser": "^1.7.0",
     "react-native-dropdown": "https://github.com/alinz/react-native-dropdown",
     "react-native-fetch-blob": "^0.6.3-dev.1",
+    "react-native-firebase": "^3.3.1",
     "react-native-local-mongodb": "^2.0.0",
     "react-native-selectme": "^1.2.3",
     "react-native-vector-icons": "^4.5.0",

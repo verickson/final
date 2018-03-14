@@ -6,34 +6,62 @@ import { Container, Content, Card, CardItem, Form, Item, Input, Label, Body } fr
 import styles from './css/styles';
 
 import firebase from 'firebase';
-// import RNFetchBlob from 'react-native-fetch-blob';
-const config = {
-  apiKey: "AIzaSyAtRjXLIFn1EKsw36jP1wWntUuT_6e5DFo",
-  databaseURL: "https://mycloset-001.firebaseio.com",
-  storageBucket: "mycloset-001.appspot.com"
-};
-firebase.initializeApp(config);
-
-// import store from './store';
+import APIKeys from '../constants/APIKeys';
 
 export default class Home extends React.Component{
   constructor(props){
     super(props);
+    firebase.initializeApp(APIKeys.firebaseconfig);
+    this.state ={
+      posts: [],
+      image: '',
+      description: ''
+    }
+  }
+  componentDidMount = () =>{
+    let dbRef = firebase.database().ref('/posts');
+    dbRef.on('value', (snapshot) => {
+      // console.log(snapshot.val());
+      let posts = snapshot.val();
+      let newState = [];
+       // console.log(posts);
+      for (let post in posts) {
+        newState.push({
+          image: posts[post].image,
+          description: posts[post].description
+        });
+      }
+      // console.log(newState);
+      this.setState({
+        posts: newState
+      });
+    })
   }
   handlePress =(props)=>{
-    this.props.navigation.navigate("Details")
+    this.props.navigation.navigate("Details", {image: this.state.posts})
   }
   render(){
+     // console.log(this.props)
     return(
       <View style={styles.container}>
           <Content>
+            {this.state.posts.map((post) => {
+              if (post.image === '') {
+
+              }
+              else{
+                return (
+                  <Card key={post.image} style={{flexWrap: 'nowrap'}} onPress={this.handlePress}>
+                    <CardItem cardBody>
+                      <Image source={{uri: post.image}} style={{flexDirection:'row', alignSelf: 'stretch', resizeMode: 'cover', height: 200, width: null, flex: 1}}/>
+                    </CardItem>
+                  </Card>
+                )
+              }
+            })}
             <Card>
               <CardItem>
-                <Image source={{uri: 'Image URL'}} style={{height: 200, width: null, flex: 1}}/>
                 <Body>
-                  <Text>Open up App.js to start working on your app!</Text>
-                  <Text>Changes you make will automatically reload.</Text>
-                  <Text>Shake your phone to open the developer menu.</Text>
                   <TouchableOpacity onPress={this.handlePress}>
                     <Text>Go to details</Text>
                   </TouchableOpacity>
